@@ -1,0 +1,9 @@
+.item-complete{
+    text-decoration: line-through;
+    opacity: .4;
+}
+.dateTask{
+    font-size: 10px;
+    opacity: .5;
+    margin-top: 5px;
+}

@@ -5,27 +5,47 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Todolist from './components/Todolist/Todolist';
 import Todoadd from './components/Todoadd/Todoadd';
+import { v4 as uuidv4 } from 'uuid';
 class App extends Component {
   constructor() {
     super();
     this.state ={
-      items: []
+      items: [],
+      id :uuidv4()
     }
   }
   addItem = (taskName) => { //truyen  call back addItem vao component Todoadd
+    let d = new Date();
     const newTask = {
       text: taskName,
-      key: Date.now()
+      key: this.state.id,
+      date: d.toString(),
+    //   isComplete : true
     }
+    console.log(newTask)
     if(taskName !== null && taskName !==''){
-      // const items = [...this.state.items, newTask]
-      // this.setState({items: items}) // or {items,}
       this.setState(state =>  {
         return {
-            items: [...state.items, newTask]
+            items: [...state.items, newTask],
+            id: uuidv4()
         }
       })
     }
+  }
+  clearList = () =>{
+    this.setState({
+      items: []
+    })
+  }
+  handleDelete = key =>{
+    const filterItems = this.state.items.filter(item => item.key !== key);
+  console.log(key)
+    this.setState({
+      items : filterItems
+    })
+  }
+  handleEdit = key => {
+    
   }
   render() {
     return (
@@ -33,8 +53,7 @@ class App extends Component {
         <Row>
           <Col sm={5}>
             <Todoadd addItem = {this.addItem}/>
-            <Todolist entries={this.state.items}/>
-            
+            <Todolist entries= {this.state.items} clearList={this.clearList} handleDelete = {this.handleDelete} handleEdit = {this.handleEdit}/>
           </Col>
         </Row>
       </Container>

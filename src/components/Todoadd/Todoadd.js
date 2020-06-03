@@ -3,6 +3,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 class Todoadd extends React.Component {
     constructor(props) {
         super(props);
@@ -24,18 +25,34 @@ class Todoadd extends React.Component {
         this.taskInput.current.value='';
         this.taskInput.current.focus();
     }
+    asc = () =>(
+        <Form >
+        <Card.Body>
+            <InputGroup className="mb-3">
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Edit task"
+                        />
+            </InputGroup>
+            <Button variant="success" type="submit" style={{width: "100%"}}>
+                    Edit task
+            </Button>
+        </Card.Body>
+         </Form>
+    )
     render() {
         return (
             <div>
                 <Form onSubmit={this.handleInput}>
-                    <InputGroup size="sm" className="mb-3">
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Task"
-                            ref={this.taskInput} />
-                        <Button variant="primary" type="submit">
-                            Add
-                        </Button>
-                    </InputGroup>
+                    <Card.Body>
+                        <InputGroup className="mb-3">
+                            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Task"
+                                ref={this.taskInput} />
+                            <Button variant="primary" type="submit">
+                                Add
+                            </Button>
+                        </InputGroup>
+                    </Card.Body>
                 </Form>
+                
             </div>
         );
     }
