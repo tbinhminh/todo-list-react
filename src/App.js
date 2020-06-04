@@ -11,7 +11,8 @@ class App extends Component {
     super();
     this.state ={
       items: [],
-      id :uuidv4()
+      id :uuidv4(),
+      editStatus : false
     }
   }
   addItem = (taskName) => { //truyen  call back addItem vao component Todoadd
@@ -20,7 +21,6 @@ class App extends Component {
       text: taskName,
       key: this.state.id,
       date: d.toString(),
-    //   isComplete : true
     }
     console.log(newTask)
     if(taskName !== null && taskName !==''){
@@ -38,14 +38,14 @@ class App extends Component {
     })
   }
   handleDelete = key =>{
+    console.log(key)
     const filterItems = this.state.items.filter(item => item.key !== key);
-  console.log(key)
     this.setState({
       items : filterItems
     })
   }
   handleEdit = key => {
-    
+    console.log(key);
   }
   render() {
     return (
@@ -53,11 +53,12 @@ class App extends Component {
         <Row>
           <Col sm={5}>
             <Todoadd addItem = {this.addItem}/>
-            <Todolist entries= {this.state.items} clearList={this.clearList} handleDelete = {this.handleDelete} handleEdit = {this.handleEdit}/>
+            <Todolist entries = {this.state.items} clearList ={this.clearList} 
+            handleDelete = {this.handleDelete} 
+            handleEdit = {this.handleEdit}/>
           </Col>
         </Row>
       </Container>
-
     );
   }
 }

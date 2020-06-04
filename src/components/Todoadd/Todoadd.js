@@ -9,7 +9,6 @@ class Todoadd extends React.Component {
         super(props);
         this.taskInput = React.createRef();
     }
-    
     handleInput = e => {
         e.preventDefault()
         // const taskName = this.refs.taskInput.value;
@@ -25,19 +24,6 @@ class Todoadd extends React.Component {
         this.taskInput.current.value='';
         this.taskInput.current.focus();
     }
-    asc = () =>(
-        <Form >
-        <Card.Body>
-            <InputGroup className="mb-3">
-                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Edit task"
-                        />
-            </InputGroup>
-            <Button variant="success" type="submit" style={{width: "100%"}}>
-                    Edit task
-            </Button>
-        </Card.Body>
-         </Form>
-    )
     render() {
         return (
             <div>
